@@ -114,7 +114,10 @@ class Game
     end
   end
 
-  def play
+  def play(n)
+    
+    @player_card.name = n
+
     2.times do
       @com_card.cards << @deck.pop
       @player_card.cards << @deck.pop
@@ -132,15 +135,19 @@ class Game
       if decision == 1
         hit
       elsif decision == 2
-        puts "You choose to stay!"
+        puts "#{@player_card.name} choose to stay!\n"
         break if dealer_dealing
       end
     end  
   end
 end
 
+
+puts "Welcome to play Blackjack game. Please enter your name:"
+name = gets.chomp
+puts "Hi, #{name}"
 begin
-  Game.new.play
+  Game.new.play(name)
   puts "\nPlay again? (Y/N)"
   yes_or_no = gets.chomp.downcase
 end while yes_or_no == 'y'
